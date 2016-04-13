@@ -1,0 +1,1 @@
+AngularJS project to connect to the backoffice API
