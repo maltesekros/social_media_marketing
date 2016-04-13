@@ -12,6 +12,7 @@
         <module>backoffice-api</module>
         <module>daemon</module>
         <module>gateway</module>
+        <module>contract</module>
     </modules>
 
 
