@@ -23,7 +23,7 @@ public class CampaignsService {
 
     public Campaign getCampaign(String id) {
         try {
-            return campaignsRepository.findOne(Integer.parseInt(id));
+            return campaignsRepository.findOne(id);
         } catch (Throwable t) {
             t.printStackTrace();
         }
@@ -42,7 +42,7 @@ public class CampaignsService {
 
     public void deleteCampaign(String id) {
         try {
-            Campaign campaign = campaignsRepository.findOne(Integer.parseInt(id));
+            Campaign campaign = campaignsRepository.findOne(id);
             campaignsRepository.delete(campaign);
         } catch (Throwable t) {
             t.printStackTrace();
