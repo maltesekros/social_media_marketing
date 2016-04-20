@@ -1,19 +1,15 @@
 package com.tipico.social.marketing.controller;
 
-import com.tipico.social.marketing.contract.Campaign;
-import com.tipico.social.marketing.repository.CampaignsProvider;
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
+import com.tipico.social.marketing.entity.Campaign;
+import com.tipico.social.marketing.repository.CampaignsRepository;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -23,10 +19,12 @@ import java.util.List;
 @RestController
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.tipico.social.marketing"})
+@EnableMongoRepositories(basePackageClasses=CampaignsRepository.class)
+@RequestMapping("/")
 public class CampaignsController {
 
     @Autowired
-    private CampaignsProvider campaignsProvider;
+    private CampaignsRepository campaignsRepository;
 
     @RequestMapping("/")
     public String root() {
@@ -36,7 +34,12 @@ public class CampaignsController {
     @RequestMapping("/getCampaign")
     @ResponseBody
     public Campaign getCampaign(@RequestParam(value="id", required=true) String id) {
-        return campaignsProvider.findOne(id);
+        try {
+            return campaignsRepository.findOne(Integer.parseInt(id));
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+        return null;
     }
 
     @RequestMapping("/saveCampaign")
@@ -44,7 +47,7 @@ public class CampaignsController {
     public Campaign saveCampaign(@RequestParam(value="campaign", required=true) String campaignJson) {
         try {
             Campaign campaign = new ObjectMapper().readValue(campaignJson, Campaign.class);
-            return campaignsProvider.insert(campaign);
+            return campaignsRepository.insert(campaign);
         } catch (Throwable t) {
             t.printStackTrace();
         }
@@ -55,8 +58,8 @@ public class CampaignsController {
     @ResponseBody
     public void deleteCampaign(@RequestParam(value="id", required=true) String id) {
         try {
-            Campaign campaign = campaignsProvider.findOne(id);
-            campaignsProvider.delete(campaign);
+            Campaign campaign = campaignsRepository.findOne(Integer.parseInt(id));
+            campaignsRepository.delete(campaign);
         } catch (Throwable t) {
             t.printStackTrace();
         }
@@ -67,7 +70,7 @@ public class CampaignsController {
     public Campaign updateCampaign(@RequestParam(value="campaign", required=true) String campaignJson) {
         try {
             Campaign campaign = new ObjectMapper().readValue(campaignJson, Campaign.class);
-            return campaignsProvider.save(campaign);
+            return campaignsRepository.save(campaign);
         } catch (Throwable t) {
             t.printStackTrace();
         }
@@ -78,7 +81,7 @@ public class CampaignsController {
     @ResponseBody
     public long countCampaign() {
         try {
-            return campaignsProvider.count();
+            return campaignsRepository.count();
         } catch (Throwable t) {
             t.printStackTrace();
         }
@@ -92,7 +95,7 @@ public class CampaignsController {
         List<Campaign> campaignList = null;
 
         try {
-            campaignList = campaignsProvider.findAll(new PageRequest(pageNumber, perPage)).getContent();
+            campaignList = campaignsRepository.findAll(new PageRequest(pageNumber, perPage)).getContent();
         } catch (Throwable t) {
             t.printStackTrace();
         }
