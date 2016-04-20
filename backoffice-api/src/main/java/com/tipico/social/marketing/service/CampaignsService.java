@@ -68,7 +68,7 @@ public class CampaignsService {
         return -1L;
     }
 
-    public List<Campaign> requestPagedCampaigns(int pageNumber, int perPage) {
+    public List<Campaign> getPagedCampaigns(int pageNumber, int perPage) {
         List<Campaign> campaignList = null;
         try {
             campaignList = campaignsRepository.findAll(new PageRequest(pageNumber, perPage)).getContent();

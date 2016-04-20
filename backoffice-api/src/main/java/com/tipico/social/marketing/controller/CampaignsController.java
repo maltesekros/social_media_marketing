@@ -62,11 +62,11 @@ public class CampaignsController {
         return campaignsService.countCampaigns();
     }
 
-    @RequestMapping("/requestPagedCampaigns")
+    @RequestMapping("/getPagedCampaigns")
     @ResponseBody
-    public List<Campaign> requestPagedCampaigns(@RequestParam(value="pageNumber", required=true) int pageNumber,
-                                                @RequestParam(value="campaignsPerPage", required=true) int perPage) {
-        return campaignsService.requestPagedCampaigns(pageNumber, perPage);
+    public List<Campaign> getPagedCampaigns(@RequestParam(value="pageNumber", required=true) int pageNumber,
+                                                @RequestParam(value="perPage", required=true) int perPage) {
+        return campaignsService.getPagedCampaigns(pageNumber, perPage);
     }
 
     public static void main(String[] args) throws Exception {
