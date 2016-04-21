@@ -5,10 +5,10 @@ package com.tipico.social.marketing.gateway;
  */
 public interface TwitterService {
 
-    /**
-     * Tweets given message.
-     *
-     * @param message Message to be tweeted.
-     */
-    void tweetMessage(String message);
+	/**
+	 * Tweets given message.
+	 *
+	 * @param message Message to be tweeted.
+	 */
+	void tweetMessage(String message);
 }
