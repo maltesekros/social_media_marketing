@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TwitterServiceImpl implements TwitterService {
 
-    public void tweetMessage(String message) {
-        System.out.printf("Tweeting message [text: %s]%n", message);
-    }
+	public void tweetMessage(String message) {
+		System.out.printf("Tweeting message [text: %s]%n", message);
+	}
 }
