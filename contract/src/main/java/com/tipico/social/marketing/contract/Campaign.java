@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Campaign {
 
-    private Integer id;
+    private String id;
     private String eventName;
     private Date created;
     private Date lastUpdated;
@@ -13,11 +13,11 @@ public class Campaign {
     private int delayBetweenPosts;
     private String message;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
