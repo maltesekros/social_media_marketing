@@ -1,9 +1,5 @@
 import {Component} from 'angular2/core';
-
-export class Campaign {
-    id: number;
-    name: string;
-}
+import {CampaignDetailComponent} from './campaign-detail.component';
 
 @Component({
     selector: 'my-app',
@@ -12,22 +8,16 @@ export class Campaign {
 
 
     <h2>Campaign List</h2>
-    <ul class="campaigns">
+    <ul class="items">
       <li *ngFor="#campaign of campaigns"
         [class.selected]="campaign === selectedCampaign"
         (click)="onSelect(campaign)">
-        <span class="badge"></span> {{campaign.name}}
+        <span class="badge"></span><span class="text">{{campaign.name}}</span>
       </li>
     </ul>
-    <div *ngIf="selectedCampaign">
-      <h2>{{selectedCampaign.name}} details:</h2>
-      <div><label>id: </label>{{selectedCampaign.id}}</div>
-      <div>
-        <label>name: </label>
-        <input [(ngModel)]="selectedCampaign.name" placeholder="name"/>
-      </div>
-    </div>
-    `
+    <campaign-detail [campaign]="selectedCampaign"></campaign-detail>
+    `,
+    directives: [CampaignDetailComponent]
 })
 export class AppComponent {
     title = 'Tipico Social Media Campaigns';
