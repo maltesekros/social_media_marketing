@@ -81,7 +81,7 @@ nav a.router-link-active {
 }
 .items .text {
   position: relative;
-  top: -16px;
+  top: -3px;
 }
 .items {
   margin: 0 0 2em 0;
