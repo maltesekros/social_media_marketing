@@ -8,10 +8,10 @@ import {CampaignsService} from './campaigns.service';
     template: `
         <h2>Campaign List</h2>
         <ul class="items">
-          <li *ngFor="#campaign of campaigns"
+          <li *ngFor="#campaign of campaigns; #i = index"
             [class.selected]="campaign === selectedCampaign"
             (click)="onSelect(campaign)">
-            <span class="badge">{{campaign.id}}</span><span class="text">{{campaign.eventName}}</span>
+            <span class="badge">{{i + 1}}</span><span class="text">{{campaign.eventName}}</span>
           </li>
         </ul>
         <campaign-detail [campaign]="selectedCampaign"></campaign-detail>

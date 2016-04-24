@@ -114,6 +114,25 @@ nav a.router-link-active {
   border-radius: 4px 0 0 4px;
 }
 
+#campaignDetails {
+  width: 70%;
+}
+
+#campaignDetails tr {
+  width: 85%;
+}
+
+#campaignDetails tr td.editable input {
+  width: 220px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#campaignDetails tr td.editable input#message {
+  display: inline;
+  word-wrap: break-word;
+}
+
 /* everywhere else */
 * { 
   font-family: Arial, Helvetica, sans-serif; 
