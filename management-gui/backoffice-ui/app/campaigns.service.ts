@@ -3,7 +3,7 @@ import {Campaign} from './campaign';
 import {CAMPAIGNS} from './mock-campaigns';
 
 @Injectable()
-export class CampaignService {
+export class CampaignsService {
     getCampaigns() {
         return Promise.resolve(CAMPAIGNS);
     }

@@ -1,41 +1,17 @@
-import {Component, OnInit} from 'angular2/core';
-import {Campaign} from './campaign';
-import {CampaignDetailComponent} from './campaign-detail.component';
-import {CampaignService} from './campaign.service';
+import {Component} from '/angular2/core';
+import {CampaignsService} from './campaigns.service';
+import {CampaignsComponent} from './campaigns.component';
 
 @Component({
     selector: 'my-app',
-    template: `
-    <h1>{{title}}</h1>
-
-    <h2>Campaign List</h2>
-    <ul class="items">
-      <li *ngFor="#campaign of campaigns"
-        [class.selected]="campaign === selectedCampaign"
-        (click)="onSelect(campaign)">
-        <span class="badge">{{campaign.id}}</span><span class="text">{{campaign.name}}</span>
-      </li>
-    </ul>
-    <campaign-detail [campaign]="selectedCampaign"></campaign-detail>
+    template:  `
+        <h1>{{title}}</h1>
+        <my-campaigns></my-campaigns>
     `,
-    directives: [CampaignDetailComponent],
-    providers: [CampaignService]
+    directives: [CampaignsComponent],
+    providers: [CampaignsService]
 })
-export class AppComponent implements OnInit {
+
+export class AppComponent {
     title = 'Tipico Social Media Campaigns';
-    campaigns: Campaign[];
-    selectedCampaign: Campaign;
-
-    constructor(private _campaignService: CampaignService) { }
-
-    getCampaigns() {
-        this._campaignService.getCampaigns().then(campaigns => this.campaigns = campaigns);
-    }
-
-    ngOnInit() {
-        this.getCampaigns();
-    }
-
-    onSelect(campaign: Campaign) { this.selectedCampaign = campaign; }
 }
-
