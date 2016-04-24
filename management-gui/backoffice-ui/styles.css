@@ -66,14 +66,21 @@ nav a.router-link-active {
 
 /* items class */
 .items {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-flow: wrap column;
   color: #607D8B;
   background-color: white;
   left: .1em;
 }
 .items li:hover {
   color: #607D8B;
-  background-color: #DDD;
   left: .1em;
+  background-color: #DDD;
+  background-image: url('app/trashbin.png');
+  background-repeat: no-repeat;
+  background-position: 98%;
 }
 .items li.selected:hover {
   background-color: #BBD8DC;
@@ -98,6 +105,7 @@ nav a.router-link-active {
   padding: .3em 0;
   height: 1.6em;
   border-radius: 4px;
+  min-width: 23em;
 }
 .items .badge {
   display: inline-block;
@@ -120,10 +128,14 @@ nav a.router-link-active {
 
 #campaignDetails tr {
   width: 85%;
+  height: 30px;
+  padding: .3em 0;
 }
 
 #campaignDetails tr td.editable input {
-  width: 220px;
+  width: 240px;
+  height: 30px;
+  font-size: 15px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -131,6 +143,15 @@ nav a.router-link-active {
 #campaignDetails tr td.editable input#message {
   display: inline;
   word-wrap: break-word;
+}
+
+#detail {
+  padding-top: 30px;
+  height: 20%;
+}
+
+#list {
+  height: 40%;
 }
 
 /* everywhere else */

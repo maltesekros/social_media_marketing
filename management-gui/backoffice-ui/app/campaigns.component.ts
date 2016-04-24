@@ -6,14 +6,16 @@ import {CampaignsService} from './campaigns.service';
 @Component({
     selector: 'my-campaigns',
     template: `
-        <h2>Campaign List</h2>
-        <ul class="items">
-          <li *ngFor="#campaign of campaigns; #i = index"
-            [class.selected]="campaign === selectedCampaign"
-            (click)="onSelect(campaign)">
-            <span class="badge">{{i + 1}}</span><span class="text">{{campaign.eventName}}</span>
-          </li>
-        </ul>
+        <div id="list">
+            <h2>Campaign List</h2>
+            <ul class="items">
+              <li *ngFor="#campaign of campaigns; #i = index"
+                [class.selected]="campaign === selectedCampaign"
+                (click)="onSelect(campaign)">
+                <span class="badge">{{i + 1}}</span><span class="text">{{campaign.eventName}}</span>
+              </li>
+            </ul>
+        </div>
         <campaign-detail [campaign]="selectedCampaign"></campaign-detail>
     `,
     directives: [CampaignDetailComponent]
