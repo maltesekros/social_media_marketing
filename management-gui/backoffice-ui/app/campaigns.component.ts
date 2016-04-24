@@ -11,7 +11,7 @@ import {CampaignsService} from './campaigns.service';
           <li *ngFor="#campaign of campaigns"
             [class.selected]="campaign === selectedCampaign"
             (click)="onSelect(campaign)">
-            <span class="badge">{{campaign.id}}</span><span class="text">{{campaign.name}}</span>
+            <span class="badge">{{campaign.id}}</span><span class="text">{{campaign.eventName}}</span>
           </li>
         </ul>
         <campaign-detail [campaign]="selectedCampaign"></campaign-detail>
@@ -25,7 +25,7 @@ export class CampaignsComponent implements OnInit {
     constructor(private _campaignsService: CampaignsService) { }
 
     getCampaigns() {
-        this._campaignsService.getCampaigns().then(campaigns => this.campaigns = campaigns);
+        this._campaignsService.getCampaigns().then(campaigns => this.campaigns = Array.from(campaigns));
     }
 
     ngOnInit() {

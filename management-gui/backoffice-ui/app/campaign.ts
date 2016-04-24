@@ -1,4 +1,10 @@
 export class Campaign {
-    id: number;
-    name: string;
+    id: string;
+    eventName: string;
+    created: Date;
+    lastUpdated: Date;
+    startDate: Date;
+    endDate: Date;
+    delayBetweenPosts: number;
+    message: string;
 }

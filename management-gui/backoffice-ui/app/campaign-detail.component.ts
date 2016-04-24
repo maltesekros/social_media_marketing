@@ -5,11 +5,11 @@ import {Campaign} from './campaign';
     selector: 'campaign-detail',
     template: `
         <div *ngIf="campaign">
-          <h2>{{campaign.name}} details:</h2>
+          <h2>{{campaign.eventName}} details:</h2>
           <div><label>id: </label>{{campaign.id}}</div>
           <div>
             <label>name: </label>
-            <input [(ngModel)]="campaign.name" placeholder="name"/>
+            <input [(ngModel)]="campaign.eventName" placeholder="name"/>
           </div>
         </div>
     `
