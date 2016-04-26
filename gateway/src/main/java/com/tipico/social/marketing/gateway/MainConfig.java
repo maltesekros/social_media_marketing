@@ -26,15 +26,15 @@ public class MainConfig {
 	public DataSource dataSource() {
 		EmbeddedDatabaseFactory factory = new EmbeddedDatabaseFactory();
 		factory.setDatabaseName("spring-social-quickstart");
-		factory.setDatabaseType(EmbeddedDatabaseType.H2);
+		factory.setDatabaseType(EmbeddedDatabaseType.HSQL);
 		factory.setDatabasePopulator(databasePopulator());
 		return factory.getDatabase();
 	}
 
 	private DatabasePopulator databasePopulator() {
 		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-		populator.addScript(new ClassPathResource("JdbcUsersConnectionRepository.sql",
-			JdbcUsersConnectionRepository.class));
+//		populator.addScript(new ClassPathResource("JdbcUsersConnectionRepository.sql",
+//			JdbcUsersConnectionRepository.class));
 		return populator;
 	}
 }

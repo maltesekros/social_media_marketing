@@ -15,8 +15,8 @@ import javax.inject.Inject;
 /**
  * Created by chrism on 21/04/2016.
  */
-@Configuration
-@EnableWebMvc
+//@Configuration
+//@EnableWebMvc
 public class WebMvcConfig
 	extends WebMvcConfigurerAdapter {
 
@@ -27,16 +27,16 @@ public class WebMvcConfig
 		registry.addInterceptor(new UserInterceptor(usersConnectionRepository));
 	}
 
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/signin");
-		registry.addViewController("/signout");
-	}
-
-	@Bean
-	public ViewResolver viewResolver() {
-		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-		viewResolver.setPrefix("/WEB-INF/views/");
-		viewResolver.setSuffix(".jsp");
-		return viewResolver;
-	}
+//	public void addViewControllers(ViewControllerRegistry registry) {
+//		registry.addViewController("/signin");
+//		registry.addViewController("/signout");
+//	}
+//
+//	@Bean
+//	public ViewResolver viewResolver() {
+//		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+//		viewResolver.setPrefix("/WEB-INF/views/");
+//		viewResolver.setSuffix(".jsp");
+//		return viewResolver;
+//	}
 }
