@@ -12,7 +12,12 @@ import {CampaignsService} from './campaigns.service';
               <li *ngFor="#campaign of campaigns; #i = index"
                 [class.selected]="campaign === selectedCampaign"
                 (click)="onSelect(campaign)">
-                <span class="badge">{{i + 1}}</span><span class="text">{{campaign.eventName}}</span>
+                <span class="badge">{{i + 1}}</span>
+                <span class="text">{{campaign.eventName}}
+                    <span class="delete-button" (click)="deleteCampaign(campaign)">
+                        <img id="trash" src="app/trashbin.png" alt="Delete Campaign">
+                    </span>
+                </span>
               </li>
             </ul>
         </div>
@@ -35,5 +40,13 @@ export class CampaignsComponent implements OnInit {
     }
 
     onSelect(campaign: Campaign) { this.selectedCampaign = campaign; }
+
+    deleteCampaign(campaign: Campaign) {
+        this._campaignsService.deleteCampaign(campaign.id).then(
+            setTimeout("",1000); //so that getCampaigns will not return deleted campaign
+            this.campaigns = undefined;
+            this.getCampaigns();
+        );
+    }
 }
 

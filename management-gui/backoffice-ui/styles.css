@@ -78,14 +78,31 @@ nav a.router-link-active {
   color: #607D8B;
   left: .1em;
   background-color: #DDD;
-  background-image: url('app/trashbin.png');
-  background-repeat: no-repeat;
-  background-position: 98%;
+  /*background-image: url('app/trashbin.png');*/
+  /*background-repeat: no-repeat;*/
+  /*background-position: 98%;*/
 }
+
+.delete-button {
+  visibility: hidden;
+}
+
+.items li:hover .delete-button {
+  visibility: visible;
+}
+
+#trash {
+  width: 22px;
+  height: 24px;
+  float: right;
+  padding: 1px 5px 2px 0;
+}
+
 .items li.selected:hover {
   background-color: #BBD8DC;
   color: white;
 }
+
 .items .text {
   position: relative;
   top: -3px;
@@ -145,7 +162,7 @@ nav a.router-link-active {
   word-wrap: break-word;
 }
 
-#detail {
+.detail {
   padding-top: 30px;
   height: 20%;
 }

@@ -43,7 +43,7 @@ public class CampaignsService {
     public void deleteCampaign(String id) {
         try {
             Campaign campaign = campaignsRepository.findOne(id);
-            campaignsRepository.delete(campaign);
+            if (campaign != null) campaignsRepository.delete(campaign);
         } catch (Throwable t) {
             t.printStackTrace();
         }

@@ -4,7 +4,7 @@ import {Campaign} from './campaign';
 @Component({
     selector: 'campaign-detail',
     template: `
-        <div id="detail" *ngIf="campaign">
+        <div class="detail" *ngIf="campaign">
           <h2>Campaign details:</h2>
           <div>
             <table id="campaignDetails">

@@ -9,14 +9,21 @@ export class CampaignsService {
 
     constructor (private http: Http) {}
 
-    private _campaignsUrl = 'http://localhost:8082/getPagedCampaigns?pageNumber=0&perPage=50';  // URL to web api
+    private _getPagedCampaignsUrl = 'http://localhost:8082/getPagedCampaigns?pageNumber=0&perPage=50';
+    private _deleteCampaignUrl = 'http://localhost:8082/deleteCampaign?id=';
 
     getCampaigns(): Promise<Campaign[]> {
 
-        return this.http.get(this._campaignsUrl)
+        return this.http.get(this._getPagedCampaignsUrl)
             .map(this.extractData)
-            .toPromise();
-            //.catch(this.handleError);
+            .toPromise()
+            .catch(this.handleError);
+    }
+
+    deleteCampaign(id: String): Promise {
+        return this.http.get(this._deleteCampaignUrl + id)
+            .toPromise()
+            .catch(this.handleError);
     }
 
     getCampaignsMocked() {
