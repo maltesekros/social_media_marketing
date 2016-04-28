@@ -5,9 +5,13 @@ import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 import java.util.*;
@@ -19,6 +23,7 @@ import static org.quartz.TriggerBuilder.newTrigger;
 /**
  * Created by chrism on 27/04/2016.
  */
+@EnableAutoConfiguration
 @ComponentScan(basePackages = { "com.tipico.social.marketing.daemon" })
 public class Daemon implements CommandLineRunner {
 
@@ -30,6 +35,8 @@ public class Daemon implements CommandLineRunner {
 	@Autowired
 	private SchedulerFactoryBean schedulerFactoryBean;
 	private Scheduler scheduler;
+	@Value("${daemon.thread.sleepMs}")
+	private String daemonMainThreadSleepTime;
 
 	public static void main(String args[]) {
 		SpringApplication.run(Daemon.class);
@@ -70,7 +77,7 @@ public class Daemon implements CommandLineRunner {
 		while (true) {
 			log.info(
 				String.format("No. of scheduled Campaigns [no: %d]", campaignMap.size()));
-			Thread.sleep(5000l);
+			Thread.sleep(Long.valueOf(daemonMainThreadSleepTime));
 			List<Campaign> campaigns = campaignService.getAllCampaigns();
 			if (!org.springframework.util.CollectionUtils.isEmpty(campaigns)) {
 				for (Campaign campaign : campaigns) {
