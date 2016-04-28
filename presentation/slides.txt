@@ -1,0 +1,58 @@
+Innovation Day Presentation - Social Media Marketing Tool
+——————————————————————————————
+
+Slide 1
+————
+The aim of this project is to create a generic and extensible platform which will allow Tipico to interact with social media.
+
+<Basic diagram of overall concept>
+
+
+Slide 2
+————
+Use Cases:
+Bookies wanting to promote a good odd offering via Twitter
+Marketing wanting to launch a campaign on Facebook
+POs wanting to analyse trends amongst sports fans on various channels
+HR wanting to use LinkedIn for recruitment
+
+
+Slide 3
+————
+Innovation Day - 28th April 2016
+Campaign Over Twitter
+During sport events sport fans tweet and follow #tag streams (screenshot)
+As Tipico we want to attract new customers by posting on specific #tags
+
+Slide 4
+————
+<More detailed diagram of architecture>
+
+
+Slide 5
+———
+Technologies
+Backoffice-api > Spring Boot + Mongo DB
+Daemon > Spring Boot + Quartz
+Social Gateway > Spring Social
+Management GUI > Angular 2
+
+
+Slide 6
+———
+Twitter Use Case Video (showing all journey from campaign creation to post being visible in Twitter)
+
+
+Slide 7
+————
+Possible Next Step
+
+Recruitment Campaigns over Linked In?
+Data Science Projects to gather data from Social Media?
+
+
+Slide 8
+————
+Grand Vision
+Complete Marketing Solution
+<Animation for other stuff apart from Social Media>
