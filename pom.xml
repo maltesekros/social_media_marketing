@@ -15,5 +15,7 @@
         <module>contract</module>
     </modules>
 
-
+    <properties>
+        <spring-boot.version>1.2.5.RELEASE</spring-boot.version>
+    </properties>
 </project>

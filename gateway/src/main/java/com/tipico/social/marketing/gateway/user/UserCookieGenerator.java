@@ -1,4 +1,4 @@
-package com.tipico.social.marketing.gateway;
+package com.tipico.social.marketing.gateway.user;
 
 import org.springframework.web.util.CookieGenerator;
 

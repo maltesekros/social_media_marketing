@@ -1,4 +1,4 @@
-package com.tipico.social.marketing.gateway;
+package com.tipico.social.marketing.gateway.user;
 
 /**
  * Created by chrism on 21/04/2016.

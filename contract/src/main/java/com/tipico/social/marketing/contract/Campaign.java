@@ -12,7 +12,7 @@ public class Campaign {
 	private Date lastUpdated;
 	private Date startDate;
 	private Date endDate;
-	private int delayBetweenPosts;
+	private int delayBetweenPosts; // in ms
 	private String message;
 
 	public String getId() {
@@ -77,5 +77,19 @@ public class Campaign {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	@Override
+	public String toString() {
+		return "Campaign{" +
+			"id='" + id + '\'' +
+			", eventName='" + eventName + '\'' +
+			", created=" + created +
+			", lastUpdated=" + lastUpdated +
+			", startDate=" + startDate +
+			", endDate=" + endDate +
+			", delayBetweenPosts=" + delayBetweenPosts +
+			", message='" + message + '\'' +
+			'}';
 	}
 }
