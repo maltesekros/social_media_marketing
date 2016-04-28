@@ -1,8 +1,7 @@
 import {Injectable} from 'angular2/core';
 import {Http, Response, Headers, RequestOptions} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
-import {Campaign} from './campaign';
-import {CAMPAIGNS} from './mock-campaigns';
+import {Campaign} from './campaign.js';
 
 @Injectable()
 export class CampaignsService {
@@ -11,6 +10,7 @@ export class CampaignsService {
 
     private _getPagedCampaignsUrl = 'http://localhost:8082/getPagedCampaigns?pageNumber=0&perPage=50';
     private _deleteCampaignUrl = 'http://localhost:8082/deleteCampaign?id=';
+    private _saveCampaignUrl = 'http://localhost:8082/saveCampaign?campaign=';
 
     getCampaigns(): Promise<Campaign[]> {
 
@@ -21,13 +21,24 @@ export class CampaignsService {
     }
 
     deleteCampaign(id: String): Promise {
-        return this.http.get(this._deleteCampaignUrl + id)
+     return this.http.get(this._deleteCampaignUrl + id)
+     .toPromise()
+     .catch(this.handleError);
+     }
+
+    saveCampaign(campaign: Campaign): Promise {
+        var str = this.getSaveString(campaign);
+        return this.http.get(str)
             .toPromise()
             .catch(this.handleError);
     }
 
-    getCampaignsMocked() {
-        return Promise.resolve(CAMPAIGNS);
+    getSaveString(campaign: Campaign): String{
+        return this._saveCampaignUrl + encodeURIComponent('{\"eventName\":\"' + campaign.eventName + '\",\"created\":\"' +
+                '2016-04-28T06:20:00.000+02:00' + '\",\"lastUpdated\":\"' + '2016-04-28T06:20:00.000+02:00' +
+                '\",\"startDate\":\"' + campaign.startDate + ':00.000+02:00\",\"endDate\":\"' + campaign.endDate +
+                ':00.000+02:00\",\"delayBetweenPosts\":' + campaign.delayBetweenPosts + ',\"message\":\"' + campaign.message +
+                '\"}');
     }
 
     private extractData(res: Response) {

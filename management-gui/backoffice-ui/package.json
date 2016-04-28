@@ -1,50 +1,33 @@
 {
-  "name": "angular2-quickstart",
+  "name": "ng2-minimal",
   "version": "1.0.0",
-  "description": "QuickStart package.json from the documentation, supplemented with testing support",
+  "description": "A minimal Angular 2 seed with source maps support ",
+  "main": "index.js",
   "scripts": {
-    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
-    "docker-build": "docker build -t ng2-quickstart .",
-    "docker": "npm run docker-build && docker run -it --rm -p 3000:3000 -p 3001:3001 ng2-quickstart",
-    "e2e": "tsc && concurrently \"http-server\" \"protractor protractor.config.js\"",
-    "lite": "lite-server",
-    "postinstall": "typings install",
-    "test": "tsc && concurrently \"tsc -w\" \"karma start karma.conf.js\"",
-    "tsc": "tsc",
-    "tsc:w": "tsc -w",
-    "typings": "typings",
-    "webdriver:update": "webdriver-manager update"
+    "watch": "tsc -w",
+    "serve": "http-server -c-1 .",
+    "start": "npm-run-all -p watch serve "
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "angular2": "2.0.0-beta.15",
-    "systemjs": "0.19.26",
-    "es6-promise": "^3.0.2",
-    "es6-shim": "^0.35.0",
-    "reflect-metadata": "0.1.2",
-    "rxjs": "5.0.0-beta.2",
-    "zone.js": "0.6.10",
-    "a2-in-memory-web-api": "^0.1.15"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhades/ng2-minimal.git"
   },
+  "author": "jhades.dev@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jhades/ng2-minimal/issues"
+  },
+  "homepage": "https://github.com/jhades/ng2-minimal#readme",
   "devDependencies": {
-    "canonical-path": "0.0.2",
-    "concurrently": "^2.0.0",
-    "http-server": "^0.9.0",
-    "jasmine-core": "~2.4.1",
-    "karma": "^0.13.22",
-    "karma-chrome-launcher": "^0.2.3",
-    "karma-cli": "^0.1.2",
-    "karma-htmlfile-reporter": "^0.2.2",
-    "karma-jasmine": "^0.3.8",
-    "lite-server": "^2.2.0",
-    "lodash": "^4.11.1",
-    "protractor": "^3.2.2",
-    "rimraf": "^2.5.2",
-    "rxjs": "^5.0.0-beta.2",
-    "typescript": "^1.8.10",
-    "typings": "^0.7.12"
+    "http-server": "^0.8.5",
+    "npm-run-all": "^1.2.13",
+    "es6-shim": "^0.35.0",
+    "rxjs": "5.0.0-beta.2",
+    "typescript": "^1.6.2"
   },
-  "repository": {}
+  "dependencies": {
+    "angular2": "2.0.0-beta.11",
+    "rxjs": "5.0.0-beta.2",
+    "systemjs": "~0.19.13"
+  }
 }

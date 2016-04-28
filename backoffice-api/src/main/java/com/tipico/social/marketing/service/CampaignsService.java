@@ -8,7 +8,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * Created by ncamilleri on 20/04/16.
@@ -76,5 +82,26 @@ public class CampaignsService {
             t.printStackTrace();
         }
         return campaignList;
+    }
+
+    public String getMilliSecondsFromDateString(String dateTime){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+        Date date;
+        try {
+            date = sdf.parse("1970-01-01 " + dateTime);
+            return "" + date.getTime();
+        } catch (Throwable t){
+            t.printStackTrace();
+        }
+        return "";
+    }
+
+    public String getDateStringFromMilliSeconds(String ms){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+        //creating Date from millisecond
+        Date thisDate = new Date(ms);
+        return sdf.format(thisDate);
     }
 }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from 'angular2/core';
-import {Campaign} from './campaign';
-import {CampaignDetailComponent} from './campaign-detail.component';
-import {CampaignsService} from './campaigns.service';
+import {Campaign} from './campaign.js';
+import {CampaignDetailComponent} from './campaign-detail.component.js';
+import {CampaignsService} from './campaigns.service.js';
 
 @Component({
     selector: 'my-campaigns',
@@ -15,19 +15,25 @@ import {CampaignsService} from './campaigns.service';
                 <span class="badge">{{i + 1}}</span>
                 <span class="text">{{campaign.eventName}}
                     <span class="delete-button" (click)="deleteCampaign(campaign)">
-                        <img id="trash" src="app/trashbin.png" alt="Delete Campaign">
+                        <img id="trash" src="trashbin.png" alt="Delete Campaign">
                     </span>
                 </span>
               </li>
+              <button class="btn" id="addCampaignBtn" (click)="addCampaign()">Add Campaign</button>
             </ul>
         </div>
         <campaign-detail [campaign]="selectedCampaign"></campaign-detail>
+        <table id="saveTable">
+            <tbody>
+                <tr><td></td><td><button class="btn" id="saveCampaignBtn" (click)="saveCampaign(selectedCampaign)">Save Campaign</button></td></tr>
+            </tbody>
+        </table>
     `,
     directives: [CampaignDetailComponent]
 })
 export class CampaignsComponent implements OnInit {
     campaigns: Campaign[];
-    selectedCampaign: Campaign;
+    selectedCampaign: Campaign = new Campaign();
 
     constructor(private _campaignsService: CampaignsService) { }
 
@@ -42,11 +48,19 @@ export class CampaignsComponent implements OnInit {
     onSelect(campaign: Campaign) { this.selectedCampaign = campaign; }
 
     deleteCampaign(campaign: Campaign) {
-        this._campaignsService.deleteCampaign(campaign.id).then(
-            setTimeout("",1000); //so that getCampaigns will not return deleted campaign
-            this.campaigns = undefined;
-            this.getCampaigns();
-        );
+        this.onSelect(campaign);
+        this._campaignsService.deleteCampaign(campaign.id);
+        this.getCampaigns();
+    }
+
+    addCampaign() {
+        this.selectedCampaign = new Campaign();
+    }
+
+    saveCampaign(campaign) {
+        this.selectedCampaign = campaign;
+        this.campaigns.push(this.selectedCampaign);
+        this._campaignsService.saveCampaign(this.selectedCampaign);
     }
 }
 

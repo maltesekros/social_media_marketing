@@ -1,6 +1,6 @@
 import {Component} from '/angular2/core';
-import {CampaignsService} from './campaigns.service';
-import {CampaignsComponent} from './campaigns.component';
+import {CampaignsService} from './campaigns.service.js';
+import {CampaignsComponent} from './campaigns.component.js';
 
 @Component({
     selector: 'my-app',

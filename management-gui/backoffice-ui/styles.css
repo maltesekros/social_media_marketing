@@ -1,12 +1,12 @@
 /* Master Styles */
 h1 {
-  color: #369; 
-  font-family: Arial, Helvetica, sans-serif;   
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 250%;
 }
-h2, h3 { 
+h2, h3 {
   color: #444;
-  font-family: Arial, Helvetica, sans-serif;   
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: lighter;
 }
 body {
@@ -87,7 +87,7 @@ nav a.router-link-active {
   visibility: hidden;
 }
 
-.items li:hover .delete-button {
+.items li.selected:hover .delete-button {
   visibility: visible;
 }
 
@@ -163,8 +163,25 @@ nav a.router-link-active {
 }
 
 .detail {
-  padding-top: 30px;
   height: 20%;
+}
+
+#addCampaignBtn {
+  margin: 15px 0 0 258px;
+  float: right;
+}
+
+#saveCampaignBtn {
+  margin: 15px 0 0 245px;
+  float: right;
+}
+
+.btn {
+  transform: scale(1.5);
+  color: #514f4f;
+  border-style: solid;
+  border-width: 1px;
+
 }
 
 #list {
@@ -172,6 +189,6 @@ nav a.router-link-active {
 }
 
 /* everywhere else */
-* { 
-  font-family: Arial, Helvetica, sans-serif; 
+* {
+  font-family: Arial, Helvetica, sans-serif;
 }
