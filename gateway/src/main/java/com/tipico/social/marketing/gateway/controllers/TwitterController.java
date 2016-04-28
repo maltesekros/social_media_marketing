@@ -1,4 +1,4 @@
-package com.tipico.social.marketing.gateway;
+package com.tipico.social.marketing.gateway.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,15 +55,11 @@ public class TwitterController {
 		this.accessSecret = accessToken.getSecret();
 		this.twitter = new TwitterTemplate(this.consumerKey, this.consumerSecret,
 			this.accessToken, this.accessSecret);
-		// Try and get no of folowers to make sure authorisation went well.
-		// List<Long> friendIds = twitter.friendOperations().getFollowerIds();
-		// System.out.println("You have " + friendIds.size() + " followers. ");
 	}
 
 	@RequestMapping(value = "/send/{message}", method = RequestMethod.GET)
 	public
-	@ResponseBody
-	void sendTweetMessage(@PathVariable String message, HttpServletRequest request,
+	@ResponseBody String sendTweetMessage(@PathVariable String message, HttpServletRequest request,
 		HttpServletResponse response)
 		throws IOException {
 		if (StringUtils.isEmpty(message)) {
@@ -76,6 +72,7 @@ public class TwitterController {
 			twitter.timelineOperations().updateStatus(message);
 			System.out.println("Message sent [OK]");
 		}
+		return "OK";
 	}
 
 	private void authorise(HttpServletResponse response) throws IOException {

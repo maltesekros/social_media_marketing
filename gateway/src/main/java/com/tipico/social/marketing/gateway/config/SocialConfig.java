@@ -1,5 +1,9 @@
-package com.tipico.social.marketing.gateway;
+package com.tipico.social.marketing.gateway.config;
 
+import com.tipico.social.marketing.gateway.user.SecurityContext;
+import com.tipico.social.marketing.gateway.user.SimpleConnectionSignUp;
+import com.tipico.social.marketing.gateway.user.SimpleSignInAdapter;
+import com.tipico.social.marketing.gateway.user.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

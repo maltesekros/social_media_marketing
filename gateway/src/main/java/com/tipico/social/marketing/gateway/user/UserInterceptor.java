@@ -1,4 +1,4 @@
-package com.tipico.social.marketing.gateway;
+package com.tipico.social.marketing.gateway.user;
 
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.twitter.api.Twitter;
