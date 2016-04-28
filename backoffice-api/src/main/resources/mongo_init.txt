@@ -1,0 +1,33 @@
+Sequence to get Mongo DB running on Mac:
+
+create folder ~/mongodb/data/db
+type 'brew install mongodb'
+type 'mongod --dbpath ~/mongodb/data/db' and check that mongo daemon has started on port 27017
+type 'mongo' and shell will start on db called 'test' which can be used to store campaigns
+
+To test if working fine:
+open browser and save campaign by pasting this in the url:
+http://localhost:8082/saveCampaign?campaign=%7B%22eventName%22%3A%22testEvent%22%2C%22created%22%3A%222016-03-01T06%3A20%3A00.000%2B02%3A00%22%2C%22lastUpdated%22%3A%222016-03-01T06%3A20%3A00.000%2B02%3A00%22%2C%22startDate%22%3A%222016-03-02T06%3A20%3A00.000%2B02%3A00%22%2C%22endDate%22%3A%222016-03-03T06%3A20%3A00.000%2B02%3A00%22%2C%22delayBetweenPosts%22%3A1000000%2C%22message%22%3A%22test%20Campaign%20Message%22%7D
+
+as a response should be getting something like:
+
+  {
+    id: "57175499d4c68a6254def035",
+    eventName: "testEvent",
+    created: 1456806000000,
+    lastUpdated: 1456806000000,
+    startDate: 1456892400000,
+    endDate: 1456978800000,
+    delayBetweenPosts: 1000000,
+    message: "test Campaign Message"
+  }
+
+
+then check that the number of campaigns saved is 1 by typing this:
+http://localhost:8082/countCampaigns
+
+then try to delete a campaign by deleting with the id
+http://localhost:8082/deleteCampaign?id=57175499d4c68a6254def035
+
+then check that the number of campaigns is now 0 by typing this:
+http://localhost:8082/countCampaigns
