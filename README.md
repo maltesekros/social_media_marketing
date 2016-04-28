@@ -10,7 +10,7 @@ User's might be:
 - Product Owners wanting to analyse market trends.
 - etc.
 
-Part 1 - Innovation Day 27/04/2015
+Part 1 - Innovation Day 27/04/2016
 ----------------------------------
 Creating campaigns for twitter.
 
