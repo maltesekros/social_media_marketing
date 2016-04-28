@@ -12,10 +12,7 @@ import org.springframework.social.twitter.api.impl.TwitterTemplate;
 import org.springframework.social.twitter.connect.TwitterConnectionFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,9 +54,9 @@ public class TwitterController {
 			this.accessToken, this.accessSecret);
 	}
 
-	@RequestMapping(value = "/send/{message}", method = RequestMethod.GET)
+	@RequestMapping(value = "/send", method = RequestMethod.POST)
 	public
-	@ResponseBody String sendTweetMessage(@PathVariable String message, HttpServletRequest request,
+	@ResponseBody String sendTweetMessage(@RequestBody String message, HttpServletRequest request,
 		HttpServletResponse response)
 		throws IOException {
 		if (StringUtils.isEmpty(message)) {

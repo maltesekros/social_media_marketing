@@ -24,53 +24,78 @@ public class Daemon implements CommandLineRunner {
 
 	private static final Logger log = LoggerFactory.getLogger(Daemon.class);
 	// Map for current Campaigns
-	private Map<Integer, Campaign> campaignMap = new HashMap<>();
+	private Map<String, Campaign> campaignMap = new HashMap<>();
 	@Autowired
-	SchedulerFactoryBean schedulerFactoryBean;
-	Scheduler scheduler;
+	private CampaignService campaignService;
+	@Autowired
+	private SchedulerFactoryBean schedulerFactoryBean;
+	private Scheduler scheduler;
 
 	public static void main(String args[]) {
 		SpringApplication.run(Daemon.class);
 	}
 
-	private void scheduleCampaign(Campaign campaign, Scheduler scheduler) throws SchedulerException {
-		// TODO - Schedule Job depending on Campaign ....
+	private void scheduleCampaign(Campaign campaign) throws SchedulerException {
+		log.info("-----------------");
+		log.info("Scheduling campaign: " + campaign);
+		log.info("-----------------");
+		//Create Job
 		JobDataMap jobDataMap = new JobDataMap();
-		jobDataMap.put("message", Integer.toString(new Random().nextInt()));
+		jobDataMap.put("message", campaign.getMessage());
 		JobDetail job1 = newJob(ScheduledJob.class)
-			.withIdentity("job1", "group1")
+			.withIdentity("camp" + campaign.getId(), "group1")
 			.setJobData(jobDataMap)
 			.build();
-
+		// Create Trigger
 		SimpleTrigger trigger1 = newTrigger()
-			.withIdentity("trigger1", "group1")
-			.startAt(new Date())
+			.withIdentity("trig" + campaign.getId(), "group1")
+			.startAt(campaign.getStartDate())
+			.endAt(campaign.getEndDate())
 			.withSchedule(simpleSchedule()
-				.withIntervalInSeconds(10)
-				.withRepeatCount(1))
+			.repeatForever()
+			.withIntervalInMilliseconds(campaign.getDelayBetweenPosts()))
 			.build();
 		scheduler.scheduleJob(job1, trigger1);
+		campaignMap.put(campaign.getId(), campaign);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
+		log.info("Starting Daemon ...");
 		// Init Scheduler ...
 		scheduler = schedulerFactoryBean.getScheduler();
 		scheduler.start();
-		scheduleCampaign(null, scheduler);
+
 		// Daemon will never die ...
 		while (true) {
+			log.info(
+				String.format("No. of scheduled Campaigns [no: %d]", campaignMap.size()));
 			Thread.sleep(5000l);
-
-			// TODO - Get Campaigns ...
-			List<Campaign> campaigns = new ArrayList<>();
+			List<Campaign> campaigns = campaignService.getAllCampaigns();
 			if (!org.springframework.util.CollectionUtils.isEmpty(campaigns)) {
 				for (Campaign campaign : campaigns) {
-					// TODO - If campaign should be active start new scheduled job
-					if (!campaignMap.containsKey(campaign.getId())) {
-						log.info("Scheduling ...");
+					Date now = new Date();
+					// Campaign is active
+					if (campaign.getEndDate().after(now)) {
+						// Check if it has been already scheduled ...
+						if (!campaignMap.containsKey(campaign.getId())) {
+							log.info(String
+								.format("Scheduling campaign [id: %s]", campaign.getId()));
+							scheduleCampaign(campaign);
+						}
+						else {
+							log.info(String
+								.format("Campaign [id: %s] is already scheduled ...",
+									campaign.getId()));
+						}
 					}
-					// TODO - If campaign should be stopped, do so
+					else {
+						if (campaignMap.containsKey(campaign.getId())) {
+							campaignMap.remove(campaign.getId());
+							log.info(String.format("Campaign [id: %s] removed from map. ",
+								campaign.getId()));
+						}
+					}
 				}
 			}
 		}
