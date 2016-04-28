@@ -1,0 +1,194 @@
+/* Master Styles */
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+h2, h3 {
+  color: #444;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+}
+body {
+  margin: 2em;
+  display: flex;
+}
+body, input[text], button {
+  color: #888;
+  font-family: Cambria, Georgia;
+}
+a {
+  cursor: pointer;
+  cursor: hand;
+}
+button {
+  font-family: Arial;
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+}
+button:hover {
+  background-color: #cfd8dc;
+}
+button:disabled {
+  background-color: #eee;
+  color: #aaa;
+  cursor: auto;
+}
+
+/* Navigation link styles */
+nav a {
+  padding: 5px 10px;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #eee;
+  border-radius: 4px;
+}
+nav a:visited, a:link {
+  color: #607D8B;
+}
+nav a:hover {
+  color: #039be5;
+  background-color: #CFD8DC;
+}
+nav a.router-link-active {
+  color: #039be5;
+}
+
+.selected {
+  background-color: #BBD8DC !important;
+  color: white;
+}
+
+/* items class */
+.items {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-flow: wrap column;
+  color: #607D8B;
+  background-color: white;
+  left: .1em;
+}
+.items li:hover {
+  color: #607D8B;
+  left: .1em;
+  background-color: #DDD;
+  /*background-image: url('app/trashbin.png');*/
+  /*background-repeat: no-repeat;*/
+  /*background-position: 98%;*/
+}
+
+.delete-button {
+  visibility: hidden;
+}
+
+.items li.selected:hover .delete-button {
+  visibility: visible;
+}
+
+#trash {
+  width: 22px;
+  height: 24px;
+  float: right;
+  padding: 1px 5px 2px 0;
+}
+
+.items li.selected:hover {
+  background-color: #BBD8DC;
+  color: white;
+}
+
+.items .text {
+  position: relative;
+  top: -3px;
+}
+.items {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 24em;
+}
+.items li {
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  background-color: #EEE;
+  margin: .5em;
+  padding: .3em 0;
+  height: 1.6em;
+  border-radius: 4px;
+  min-width: 23em;
+}
+.items .badge {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  padding: 0.8em 0.7em 0 0.7em;
+  background-color: #607D8B;
+  line-height: 1em;
+  position: relative;
+  left: -1px;
+  top: -4px;
+  height: 1.8em;
+  margin-right: .8em;
+  border-radius: 4px 0 0 4px;
+}
+
+#campaignDetails {
+  width: 70%;
+}
+
+#campaignDetails tr {
+  width: 85%;
+  height: 30px;
+  padding: .3em 0;
+}
+
+#campaignDetails tr td.editable input {
+  width: 240px;
+  height: 30px;
+  font-size: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#campaignDetails tr td.editable input#message {
+  display: inline;
+  word-wrap: break-word;
+}
+
+.detail {
+  height: 20%;
+}
+
+#addCampaignBtn {
+  margin: 15px 0 0 258px;
+  float: right;
+}
+
+#saveCampaignBtn {
+  margin: 15px 0 0 245px;
+  float: right;
+}
+
+.btn {
+  transform: scale(1.5);
+  color: #514f4f;
+  border-style: solid;
+  border-width: 1px;
+
+}
+
+#list {
+  height: 40%;
+}
+
+/* everywhere else */
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
