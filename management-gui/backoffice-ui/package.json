@@ -1,8 +1,8 @@
 {
-  "name": "ng2-minimal",
+  "name": "Tipico_Social_Media_Campaigns",
   "version": "1.0.0",
-  "description": "A minimal Angular 2 seed with source maps support ",
-  "main": "index.js",
+  "description": "A GUI for Tipico SMM using Angular 2.0 by Neville Camilleri",
+  "main": "main.js",
   "scripts": {
     "watch": "tsc -w",
     "serve": "http-server -c-1 .",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jhades/ng2-minimal.git"
+    "url": "git+https://github.com/maltesekros/social_media_marketing.git"
   },
-  "author": "jhades.dev@gmail.com",
+  "author": "neville.camilleri@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jhades/ng2-minimal/issues"
+    "url": "https://github.com/maltesekros/social_media_marketing/issues"
   },
-  "homepage": "https://github.com/jhades/ng2-minimal#readme",
+  "homepage": "https://github.com/maltesekros/social_media_marketing#readme",
   "devDependencies": {
     "http-server": "^0.8.5",
     "npm-run-all": "^1.2.13",
