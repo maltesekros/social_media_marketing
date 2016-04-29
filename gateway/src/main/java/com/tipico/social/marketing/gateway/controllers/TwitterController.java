@@ -25,7 +25,7 @@ import java.io.IOException;
 @RequestMapping("/social/twitter")
 public class TwitterController {
 
-	public static final String CALLBACK_URL = "http://127.0.0.1:8080/social/twitter/callback";
+	public static final String CALLBACK_URL = "http://127.0.0.1:8081/social/twitter/callback";
 	private Twitter twitter;
 	@Value("${twitter.consumerKey}")
 	private String consumerKey;
@@ -67,7 +67,10 @@ public class TwitterController {
 			authorise(response);
 		} else {
 			twitter.timelineOperations().updateStatus(message);
+			System.out.println("------------------------");
 			System.out.println("Message sent [OK]");
+			System.out.println("------------------------");
+
 		}
 		return "OK";
 	}

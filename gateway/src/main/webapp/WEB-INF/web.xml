@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
 	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
-    <display-name>Spring Web MVC Application</display-name>
+    <display-name>Social Gateway</display-name>
 
     <servlet>
         <servlet-name>mvc-dispatcher</servlet-name>
@@ -21,12 +21,23 @@
         <param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>
     </context-param>
 
+    <servlet>
+        <servlet-name>htmlServlet</servlet-name>
+        <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>htmlServlet</servlet-name>
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
     <welcome-file-list>
-        <welcome-file>/index.html</welcome-file>
+        <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 
 </web-app>

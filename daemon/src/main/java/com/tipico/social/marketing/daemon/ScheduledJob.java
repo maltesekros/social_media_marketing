@@ -17,7 +17,8 @@ import java.util.Date;
 public class ScheduledJob extends QuartzJobBean {
 
 	private static final Logger log = LoggerFactory.getLogger(ScheduledJob.class);
-	public static final String SEND_MESSAGE = "http://localhost:8080/social/twitter/send/";
+	// TODO - Add to properties
+	public static final String SEND_MESSAGE = "http://127.0.0.1:8081/social/twitter/send";
 	private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyHHmmss");
 
 	@Override
@@ -27,6 +28,7 @@ public class ScheduledJob extends QuartzJobBean {
 		String message = (String)jobExecutionContext.getMergedJobDataMap().get("message");
 		message = message + " " + simpleDateFormat.format(new Date());
 		try {
+			log.info(String.format("Calling [url: %s]", SEND_MESSAGE));
 			restTemplate.postForEntity(SEND_MESSAGE, message, String.class);
 			log.info("Called Send Method [OK]");
 		}
