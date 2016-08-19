@@ -1,4 +1,4 @@
-SOCIAL MEDIA MARKETING
+SOCIAL MEDIA MARKETING!
 ----------------------
 Neville Camilleri, Chris Micallef, Pawel Palusiak
 
