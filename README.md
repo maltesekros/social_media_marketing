@@ -1,5 +1,5 @@
-SOCIAL MEDIA MARKETING!
-----------------------
+SOCIAL MEDIA MARKETING!!!
+-------------------------
 Neville Camilleri, Chris Micallef, Pawel Palusiak
 
 Main idea is to offer a generic tool to be used as an interface to social media.
